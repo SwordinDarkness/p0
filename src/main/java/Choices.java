@@ -122,19 +122,11 @@ public class Choices {
         this.choice1 = choice1;
     }
 
-    public String getChoice2() {
-        return choice2;
-    }
+    public String getChoice2() {  return choice2;  }
 
-    public void setChoice2(String choice2) {
-        this.choice2 = choice2;
-    }
+    public void setChoice2(String choice2) {this.choice2 = choice2; }
 
-    public String getEnding() {
-        return ending;
-    }
+    public String getEnding() { return ending; }
 
-    public void setEnding(String ending) {
-        this.ending = ending;
-    }
+    public void setEnding(String ending) {this.ending = ending; }
 }
