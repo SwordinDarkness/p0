@@ -1,20 +1,31 @@
 import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 public class Choices {
     private String name;
     private String choice1;
     private String choice2;
     private String ending;
+    private final Logger log = LoggerFactory.getLogger(Choices.class);
     public Choices() {
+
         super();
+        log.info("Building Object");
     }
 
     public void name()
     {
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your name: ");
         this.name = sc.nextLine();
+        log.info("String name in Choice object is set");
 
     }
+    /** Prints out a scenario that the user reads and picks one
+     * The choice 1 string is set to Scanner nextLine
+     * If the input is incorrect( not 1 or 2) then the method sets choice 1 to zero.
+    * */
     public void Number1 ()
     {
         Scanner sc = new Scanner(System.in);
@@ -23,8 +34,19 @@ public class Choices {
                 + "\nTwo: Run away"
                 + "\nEnter 1 to approach or 2 to run way");
         this.choice1  = sc.nextLine();
+        log.info("String Choice 1 in Choice object is set");
+        //If the string
+        if(!(this.choice1.equals("1") || this.choice1.equals("2")))
+        {
+            log.info("Error. Setting Choice 1 to zero");
+            this.choice1 ="0";
+        }
 
     }
+    /** Based on the decision in Choice 1, the user is presented with
+     * a new scenario and picks between two options
+     *If the input is incorrect( not 1 or 2) then the method sets choice 2 to zero.
+    * */
     public void Number2 ()
     {
 
@@ -36,6 +58,7 @@ public class Choices {
                     + "\nTwo: Look through a window"
                     + "\nEnter 1 to break the door or 2 to look");
             this.choice2 = sc.nextLine();
+            log.info("Choice 2 is set");
         }
         else if (this.choice1.equals("2"))
         {
@@ -44,13 +67,18 @@ public class Choices {
                     + "\nTwo: Explore the forest"
                     + "\nEnter 1 to go to your car or 2 to Explore");
             this.choice2 = sc.nextLine();
+            log.info("Choice 2 is set");
         }
         else
         {
-            System.out.println("Error wrong input");
-            this.choice2= " ";
+            log.info("Error. Setting Choice 2 to zero");
+            this.choice2= "0";
         }
     }
+    /** Based on the decision in Choice 1, the user is presented with
+     * a new scenario and picks between two options
+     *If the input is incorrect( not 1 or 2) then the method sets choice 2 to zero.
+     * */
     public void Number3 ()
     {
         if(this.choice1.equals("1") && this.choice2.equals("1"))
@@ -59,6 +87,7 @@ public class Choices {
                     + "\nGame Over"
                     + "\nThanks for playing");
             this.ending = "Ending 1";
+            log.info("Ending set to Ending 1");
         }
         else if(this.choice1.equals("1") && this.choice2.equals("2"))
         {
@@ -66,6 +95,7 @@ public class Choices {
                     + "\nGame Over"
                     + "\nThanks for playing");
             this.ending = "Ending 2";
+            log.info("Ending set to Ending 2");
         }
         else if(this.choice1.equals("2") && this.choice2.equals("1"))
         {
@@ -73,6 +103,7 @@ public class Choices {
                     + "\nGame Over"
                     + "\nThanks for playing");
             this.ending = "Ending 3";
+            log.info("Ending set to Ending 3");
         }
         else if(this.choice1.equals("2") && this.choice2.equals("2"))
         {
@@ -80,14 +111,18 @@ public class Choices {
                     + "\nGame Over"
                     + "\nThanks for playing");
             this.ending = "Ending 4";
+            log.info("Ending set to Ending 4");
         }
         else
         {
-            System.out.println("Error");
+            log.info("Error. Setting Ending to Error Ending");
             this.ending = "Error Ending";
         }
     }
 
+    /**
+     * @return A string literal of the Choice object
+     * */
     @Override
     public String toString()
     {
@@ -96,37 +131,62 @@ public class Choices {
                 +"\nChoice 2: " +this.choice2
                 +"\nEnding: " +this.ending);
     }
-
+    /**
+     * Calls all the methods needed to complete the text adventure
+    * */
     public void start()
     {
+       log.info("Calling start method");
        this.name();
        this.Number1();
        this.Number2();
        this.Number3();
        System.out.println(this);
+       log.info("Exiting start method");
     }
-
+    /**
+     * @return name from the Choice object
+     * */
     public String getName() {
         return name;
     }
-
+    /**
+     * Sets the String variable called name in Choice object
+     * Used only for testing in Junit
+     * */
     public void setName(String name) {
         this.name = name;
     }
-
+    /**
+     * @return Choice1 from the Choice object
+     * */
     public String getChoice1() {
         return choice1;
     }
-
+    /**
+     * Sets the String variable called Choice1 in Choice object
+     * Used only for testing in Junit
+     * */
     public void setChoice1(String choice1) {
         this.choice1 = choice1;
     }
-
+    /**
+     * @return Choice 2 from the Choice object
+     * */
     public String getChoice2() {  return choice2;  }
-
+    /**
+     * Sets the String variable called Choice2 in Choice object
+     * Used only for testing in Junit
+     * */
     public void setChoice2(String choice2) {this.choice2 = choice2; }
-
+    /**
+     * @return Ending from the Choice object
+     * */
     public String getEnding() { return ending; }
 
+    /**
+     * Sets the String variable called ending in Choice object
+     * Used only for testing in Junit
+     * */
     public void setEnding(String ending) {this.ending = ending; }
 }
